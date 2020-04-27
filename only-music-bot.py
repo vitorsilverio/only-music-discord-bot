@@ -17,7 +17,7 @@ client = discord.Client()
 @client.event
 async def on_message(message):
     delete = True
-    if message.author.name.__str__ == 'Groovy#7254':
+    if str(message.author) == 'Groovy#7254':
         delete = False
 
     for expression in valid_expressions:
