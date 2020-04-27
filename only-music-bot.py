@@ -22,7 +22,7 @@ async def on_message(message):
         return
 
     for expression in valid_expressions:
-        wait = wait or not expression.match(message.content)
+        wait = wait or expression.match(message.content)
     if wait:
         time.sleep(5)    
     await message.delete()
