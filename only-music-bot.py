@@ -2,6 +2,7 @@ import os
 
 import discord
 import re
+import time
 from dotenv import load_dotenv
 
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -16,14 +17,16 @@ client = discord.Client()
 
 @client.event
 async def on_message(message):
-    delete = True
+    wait = False
     if str(message.author) == 'Groovy#7254':
-        delete = False
+        return
 
     for expression in valid_expressions:
-        delete = delete and not expression.match(message.content)
-    if delete:
-        await message.delete()
+        wait = wait or not expression.match(message.content)
+    if wait:
+        time.sleep(5)    
+    await message.delete()
+    
 
 
 client.run(TOKEN)
